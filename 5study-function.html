@@ -1,0 +1,68 @@
+<html>
+    <body>
+        <h1>JS函数学习</h1>
+        <p>
+            <button type="button" onclick="funcAlert()">alertBtn</button>
+            <script>
+                function funcAlert(){
+                    alert("hello, this is a alert from function!");
+                    //let声明的变量，只在当前的代码块中有效
+                    //如下：for循环中的i和循环体中的i是不同的
+                    for (let i=0; i<3; i++){
+                        let i = "for中的let变量";
+                        console.log(i);
+                    }
+                }
+            </script>
+        </p>
+
+        <p>
+            <button type="button" onclick="funcHaveArgs('apple', 10)">funcHaveArgsBtn</button>
+            <script>
+                function funcHaveArgs(name, price){
+                    alert(name + " is " + price + " pre KG");
+                }
+            </script>
+        </p>
+
+        <p id="pReturn"></p>
+        <script>
+            function funcHaveReturn(a, b){
+                return a+b;
+            }
+            document.getElementById("pReturn").innerHTML = "a和b的和是" + funcHaveReturn(4,3)
+        </script>
+
+        <p>
+            读书:<input type="checkbox" name="checkbox" value=1>
+            写字:<input type="checkbox" name="checkbox" value=2>
+            插花:<input type="checkbox" name="checkbox" value=3>
+            绘画:<input type="checkbox" name="checkbox" value=4>
+            <button onclick="checkAllBox('checkbox')">全选</button>
+            <button onclick="uncheckAllBox('checkbox')">取消全选</button>
+            <script>
+                function checkAllBox(objName){
+                    var objNameList = document.getElementsByName(objName);
+                    console.log(objNameList);
+                    if (null != objNameList){
+                        for (var i=0; i<objNameList.length; i++){
+                            objNameList[i].checked = "checked";
+                            console.log("i=" + i + " check?" + objNameList[i].checked);
+                        }
+                    }
+                }
+
+                function uncheckAllBox(objName){
+                    var objNameList = document.getElementsByName(objName);
+                    if (null != objNameList){
+                        for (var i=0; i<objNameList.length; i++){
+                            objNameList[i].checked = "";
+                        }
+                    }
+                }
+
+            </script>
+
+        </p>
+    </body>
+</html>

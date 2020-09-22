@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <script>
+            function func1(){
+                document.getElementById("p1").innerHTML = "head中使用js函数改变段落内容";
+            }
+        </script>
+    </head>
+    <body>
+        <h1>新的web界面</h1>
+        <p id="p1">一个段落</p>
+        <button type="button" onclick="func1()">try it in head</button>
+        <br />
+        <p id="p2">一个段落2</p>       
+        <button type="button" onclick="func2()">try it in body</button>
+        <script>
+            function func2(){
+                document.getElementById("p2").innerHTML = "body中使用js函数改变段落内容";
+            }
+        </script>
+
+        <p id="p3">一个段落3</p>
+        <button type="button" onclick="funcfile()">try it in file</button>
+        <script src="1.js"></script>
+        <script>window.alert("hello mengyuan!")</script>
+        <script> document.write(Date())</script>
+        <br />
+
+        <button type="button" onclick="func3()">click to overwrite</button>
+        <script>
+            function func3(){
+                document.write("overwrite all page")
+            }
+        </script>
+        <br />
+
+        <button type="button" onclick="func4()">click to show in console</button>
+        <script>
+            function func4(){
+                console.log("click the btn3 and show sth....")
+            }           
+        </script>
+
+        <p id="p4">一个段落4</p>
+        <script>
+            //document.getElementById("p4").innerHTML = 3.33;
+            //document.getElementById("p4").innerHTML = "bye bye summer";
+            //document.getElementById("p4").innerHTML = (3+8)*10 ;
+            x = 9
+            y = 4
+            z = (x+y) * 10
+            document.getElementById("p4").innerHTML = z
+        </script>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <p>创建JavaScript对象</p>
+        <p id="p1"></p>
+        <script>
+            var person = {
+                firstName : "cheng",
+                lastName : "mengyuan",
+                age : 18,
+                fullName : function(){
+                    return this.firstName + this.lastName
+                }
+            };
+            //document.getElementById("p1").innerHTML = person.firstName + " " + person.lastName + " is " + person.age;
+            //document.getElementById("p1").innerHTML = person["firstName"] + " " + person["lastName"] + " is " + person["age"];
+            document.getElementById("p1").innerHTML = person.fullName() + " is " + person.age;
+        </script>
+    </body>
+</html>

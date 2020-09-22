@@ -1,0 +1,103 @@
+<html>
+    <body>
+        <p id="p1"></p>
+        <button onclick="getElementById('p1').innerHTML=Date()">获取当前时间</button>
+        <button onclick="this.innerHTML=Date()">获取当前时间通过this修改自身元素内容</button>
+        <p id="p2"></p>
+        <button onclick="displayDate()">通过JS脚本函数displayDate()获取时间</button>
+        <script>
+            function displayDate(){
+                document.getElementById("p2").innerHTML = Date();
+            }
+        </script>
+
+        <p id="p3">点击按钮显示字符串指定内容</p>
+        <a href="https://www.runoob.com/jsref/jsref-obj-string.html">字符串相关函数学习</a>
+        <button onclick="displayStr()">click to show string</button>
+        <script>
+            function displayStr(){
+                //https://www.runoob.com/jsref/jsref-obj-string.html
+                var s = "hello world hello world";
+                //var n = s.charAt(s.length-1); //字符串最后一个字符
+                //var n = s.charCodeAt(2) //指定字符的Unicode编码值
+                var s2 = 123456789;
+                var s3 = " bbbbbbbbbbbbbb";
+                //string.concat(string1, string2, ..., stringX) 拼接字符串
+                //var n = s.concat(s2, s3)
+                //var n = String.fromCharCode(65) //unicode编码转化为字符
+                //var n = s.indexOf("wor"); //返回指定字符首次出现的位置
+                //var n = s.includes("vv"); //判断是否包含某个字符串true/false
+                //var n = s.repeat(3) //复制字符串指定次数并返回
+                //var n = s.replace(/world/g, "mengyuan")  //默认只替换第一个，/g可以全局替换， /gi可以忽略大小写全局替换
+                //var n = s.slice(-1); //可提取字符串的某个部分，并以新的字符串返回被提取的部分
+                //var n = s.split("h"); //把一个字符串分割成字符串数组,不改变原有字符串
+                //var n = s.startsWith("ello")
+                //var n = s.substr(5,10) //string.substr(start,length)
+                //var n = s.toLocaleLowerCase() //切换为小写
+                //var n = s.toLocaleUpperCase() //切换为大写
+                var n = s2.toString()
+                document.getElementById("p3").innerHTML = n;
+            }
+        </script>
+
+        <p>判断对象类型</p>
+        <p id="p4">colors</p>
+        <script>
+            var colors = ["blue", "red", "yellow", "green"];
+            
+            function isArray(myarr) {
+                return myarr.constructor.toString().indexOf("Array") > -1;
+            }
+            document.getElementById("p4").innerHTML = isArray(colors);
+        </script>
+
+        <p>转换为字符串</p>
+        <p id="p5"></p>
+        <script>
+            // var x = false;
+            // console.log(typeof(x))
+            // var y = x.toString()
+            // //var y = String(x)
+            // console.log(typeof(y))
+            // var obj = Date();
+            // var obj1 = String(new Date);
+            // var obj2 = obj.toString()
+            // console.log(typeof(obj), typeof(obj1), typeof(obj2), typeof new Date())
+            var day = new Date();
+            day.setDate(30);
+            day.setFullYear(2022);
+            day.setHours(5);
+            day.setMilliseconds(55);
+            day.setMinutes(20);
+            day.setMonth(10);
+            
+            document.getElementById("p5").innerHTML = day;
+        </script>
+
+        <p>异常：请输入1到5的数字</p>
+        <input id="in" type="text">
+        <button type="button" onclick="displayErr()">click to show msg</button>
+        <p id="p6"></p>
+        <script>
+            function displayErr(){
+                var msg, x;
+                msg = document.getElementById("p6");
+                msg.innerHTML = "";
+                x = document.getElementById("in").value;
+                try{
+                    if(x == "") throw "空";
+                    if(isNaN(x)) throw "不是数字";
+                    if(x<1) throw "小于1";
+                    if(x>5) throw "大于5";
+                    x = Number(x);
+                }
+                catch(err){
+                    msg.innerHTML = "error:" + err;
+                }
+                finally{
+                    document.getElementById("in").value;
+                }
+            }
+        </script>
+    </body>
+</html>

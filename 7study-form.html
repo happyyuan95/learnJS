@@ -1,0 +1,51 @@
+<html>
+    <body>
+        <p>
+            <input id="in1" type="number" min="0" max="100" required>
+            <button onclick="verify()">verify</button>
+        </p>
+        <p id="p1"></p>
+        <script>
+            //checkValidity():如果 input 元素中的数据是合法的返回 true，否则返回 false
+            function verify(){
+                var inObj = document.getElementById("in1");
+                var value = inObj.value;
+                var txt = "";
+                // if (inObj.checkValidity() == false){
+                //     document.getElementById("p1").innerHTML = inObj.validationMessage;
+                // }
+                // else{
+                //     document.getElementById("p1").innerHTML = "input correct :" + inObj.value;
+                // }
+                // if (inObj.validity.rangeOverflow){
+                //     txt = value +" is too large "; 
+                // }
+                // else if(inObj.validity.rangeUnderflow){
+                //     txt = value + " is too small ";
+                // }
+                // else if (value == "" || !isNaN(value) ){
+                //     txt = value + " is not a number ";
+                // }
+                // else{
+                //     txt = value + " is correct ";
+                // }
+                if (inObj.checkValidity() == false){
+                    if (value == ""){
+                        inObj.setCustomValidity("pls input a number!");
+                    }
+                    else if (value < 0){
+                        inObj.setCustomValidity("too small, try again!");
+                    }
+                    else if (value > 100){
+                        inObj.setCustomValidity("too large, try again!");
+                    }
+                    else{
+                        inObj.setCustomValidity("success!");
+                    }
+                }
+                
+                document.getElementById("p1").innerHTML = inObj.validationMessage;
+            }
+        </script>
+    </body>
+</html>

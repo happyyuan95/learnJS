@@ -1,0 +1,215 @@
+<html>
+    <body >
+        <h3>1.使用JS改变html属性</h3>
+        <img id="img1" src="G:\wordfortest\pic1.jpg" width="400" height="500">
+        <script>
+            document.getElementById("img1").src = "G:\\wordfortest\\pic2.jpg";  //要使用转义字符标识反斜杠
+        </script>
+
+        <h3>2.使用JS改变html样式</h3>
+        <p id="p1">这是一个段落</p>
+        <p id="p2">这是一个要改变样式的段落</p>
+        <script>
+            document.getElementById("p2").style.color = "red";
+            document.getElementById("p2").style.fontSize = "larger";
+            document.getElementById("p2").style.fontFamily = "Arial";
+        </script>
+
+        <h3>3.点击元素改变事件</h3>
+        <p onclick="this.innerHTML='you click me'">点击文本发生改变</p>
+        <button id="btn1">给按键添加点击事件</button>
+        <script>
+            document.getElementById("btn1").onclick = function(){displayDate()};
+            function displayDate(){
+                document.getElementById("btn1").innerHTML = Date();
+            }
+        </script>
+
+        <h3>4.JS使用onload和onunload事件</h3>
+        <script>
+            // if (navigator.cookieEnabled == true){
+            //     alert("cookie可用");
+            // }else{
+            //     alert("cookie不可用");
+            // }
+        </script>
+
+        <h3>5.JS使用onchange事件改变输入字符串</h3>
+        <p>请输入数字，输入后会变更为大写字母</p>
+        <input type="text" id="in1" onchange="changeUpper()" onfocus="changeBackColor()">
+        <script>
+            function changeUpper() {
+                var x = document.getElementById("in1");
+                x.value = x.value.toUpperCase();
+            }
+            function changeBackColor() {
+                document.getElementById("in1").style.backgroundColor = "pink";
+            }
+        </script>
+
+        <h3>6.JS使用mouse事件</h3>
+        <p onmouseover="over(this)" onmouseout="out(this)" onmousedown="down(this)" onmouseup="up(this)">mouse over on me</p>
+        <script>
+            function over(obj) {
+                obj.innerHTML = "mouse over me，不论鼠标指针穿过被选元素或其子元素，都会触发 onmouseover 事件";
+            }
+            function out(obj) {
+                obj.innerHTML = "mouse out me,不论鼠标指针离开被选元素还是任何子元素，都会触发 onmouseout 事件";
+            }
+            function down(obj) {
+                obj.innerHTML = "mouse down on me,点击鼠标触发 onmousedown 事件";
+            }
+            function up(obj) {
+                obj.innerHTML = "mouse up from me,是否鼠标触发 onmouseup 事件";
+            }
+        </script>
+
+        <h3>7.addEventListener向元素添加事件句柄</h3>
+        <button id="a1">alert</button>
+        <p>同一个元素添加多个事件，不会覆盖已存在的事件</p>
+        <button id="a2">多个事件句柄element.addEventListener(event, function, useCapture);</button>
+        <p id="p7">重置窗口大小时添加事件</p>
+        <script>
+            // var alt = document.getElementById("a1");
+            // alt.addEventListener("click", function(){alert("hello world");});
+            function changeColor(){
+                document.getElementById("a2").style.color = "red";
+            }
+            function changeWord() {
+                document.getElementById("a2").innerHTML = "第二个事件";
+            }
+            function mouseoverFunc() {
+                document.getElementById("a1").innerHTML = "event: mouse over!";
+            }
+            function mousedownFunc() {
+                document.getElementById("a1").innerHTML = "event: mouse down!";
+            }
+            function mouseupFunc() {
+                document.getElementById("a1").innerHTML = "event: mouse up!";
+            }
+            function mouseoutFunc() {
+                document.getElementById("a1").innerHTML = "event: mouse out!";
+            }
+            function resizeFunc() {
+                document.getElementById("p7").innerHTML = Math.random();
+            }
+            document.getElementById("a2").addEventListener("click", changeColor);
+            document.getElementById("a2").addEventListener("click", changeWord);
+            document.getElementById("a1").addEventListener("mouseover", mouseoverFunc);
+            document.getElementById("a1").addEventListener("mouseout", mouseoutFunc);
+            document.getElementById("a1").addEventListener("mousedown", mousedownFunc);
+            document.getElementById("a1").addEventListener("mouseup", mouseupFunc);
+            //移除使用addEventListener添加的事件句柄
+            document.getElementById("a1").removeEventListener("mousedown", mousedownFunc); 
+            document.getElementById("a1").removeEventListener("mouseover", mouseoverFunc);
+            window.addEventListener("resize", resizeFunc);
+        </script>
+
+        <h3>8.addEventListener添加事件冒泡</h3>
+        <div id="div1" >
+            <p id="p10">div1内部段落p10</p>
+        </div>
+        <br />
+        <div id="div2">
+            <p id="p11">div2内部段落p11</p>
+        </div>
+        <script>
+            document.getElementById("div1").addEventListener("click", function(){
+                alert( "冒泡模式------div1 div1 div1-----,内部元素的事件会先被触发，然后再触发外部元素，即： <p> 元素的点击事件先触发，然后会触发 <div> 元素的点击事件");
+            }, false);
+            document.getElementById("p10").addEventListener("click", function(){
+                alert("冒泡模式------p10 p10 p10-----内部元素的事件会先被触发，然后再触发外部元素，即： <p> 元素的点击事件先触发，然后会触发 <div> 元素的点击事件");
+            }, false);
+
+            document.getElementById("div2").addEventListener("click", function(){
+                alert("捕获模式------div2 div2 div2-----外部元素的事件会先被触发，然后才会触发内部元素的事件，即： <div> 元素的点击事件先触发 ，然后再触发 <p> 元素的点击事件");
+            }, true);
+            document.getElementById("p11").addEventListener("click", function(){
+                alert("捕获模式------p11 p11 p11-----外部元素的事件会先被触发，然后才会触发内部元素的事件，即： <div> 元素的点击事件先触发 ，然后再触发 <p> 元素的点击事件");
+            }, true);
+        </script>
+
+        <h3>9.创建新的HTML元素节点到尾部 -- appendchild()</h3>
+        <div id="d1">
+            <p>on the sea</p>
+            <p>i will be</p>
+        </div>
+        <script>
+            var p = document.createElement("p"); //创建一个段落
+            var node = document.createTextNode("you are half a world away...");  //创建文本节点
+            p.appendChild(node); //文本节点添加到p
+            document.getElementById("d1").appendChild(p); //添加到已存在元素
+        </script>
+
+        <h3>10.创建新的HTML元素节点到开始位置 -- insertBefore()</h3>
+        <div id="d2">
+            <p id="d21">add1--->11111</p>
+            <p>add2--->22222</p>
+        </div>
+        <script>
+            var p = document.createElement("p"); //创建一个段落
+            var node = document.createTextNode("new insert para");  //创建文本节点
+            p.appendChild(node); //文本节点添加到p
+            
+            var father = document.getElementById("d2");
+            var child = document.getElementById("d21");
+            father.insertBefore(p, child);  //新的节点，要插入的子节点
+        </script>
+
+        <h3>11.移除已存在的元素removeChild要知道该元素的父元素</h3>
+        <div id="d3">
+            <p id="d31" onclick="clickP()">徜徉在天地之间，点击移除</p>
+            <p id="d32">heal the world</p>
+        </div>
+        <script>
+            function clickP() {
+                var father = document.getElementById("d3");
+                var son = document.getElementById("d31");
+                father.removeChild(son);
+            }
+        </script>
+
+        <h3>12.替换HTML元素replaceChild(new, old)</h3>
+        <div id="d4">
+            <p id="d41" onclick="clickChange()">点击替换新元素</p>
+        </div>
+        <script>
+            function clickChange() {
+                var p = document.createElement("p");
+                var n = document.createTextNode("我是替换的");
+                p.appendChild(n);
+
+                var father = document.getElementById("d4");
+                var son = document.getElementById("d41");
+                father.replaceChild(n, son);
+            }
+        </script>
+
+        <h3 id="hh">13.访问HTML collection 对象,类似包含 HTML 元素的一个数组,not a array</h3>
+        <script>
+            var allH = document.getElementsByTagName("h3");
+            allH[0].style.color = "green";
+            //改变所有标题的背景颜色
+            for (var i=0; i<allH.length; i++){
+                if (i==3) {allH[i].style.color = "blue"; }
+                //allH[i].style.backgroundColor = "AliceBlue";
+                allH.item(i).style.backgroundColor = "AliceBlue"; //item() 方法返回 HTMLCollection 对象中指定索引位置的元素和下标类似
+            }
+            allH.namedItem("hh").style.color = "red";
+        </script>
+
+        <h3 id="h14">14.html文档的图像数：</h3>
+        <script>
+            var imgnum = document.images.length;
+            document.getElementById("h14").innerHTML += imgnum;
+        </script>
+
+        <h3 id="h15">15.获取cookie：</h3>
+        <script>
+            var ck = document.cookie;
+            document.getElementById("h15").innerHTML += ck;
+        </script>
+        
+
+    </body>
+</html>

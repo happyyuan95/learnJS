@@ -1,0 +1,138 @@
+<html>
+    <body>
+        <h1>JS中的this关键字</h1>
+
+        <h3>1.方法中，this标识该方法所属的对象</h3>
+        <p id="p1"></p>
+        <script>
+            var person = {
+                firstName:"cheng",
+                lastName:"mengyuan",
+                sex:"woman",
+                age:"18",
+                fullName : function(){
+                    return this.firstName + " " + this.lastName;
+                }
+            };
+            document.getElementById("p1").innerHTML = "her name is " + person.fullName();
+        </script>
+
+        <h3>2.单独使用this，无论是否严格都指向全局global对象[object Window]</h3>
+        <p id="p2"></p>
+        <script>
+            "use strict"  //无论是否为严格模式，都是全局
+            var x = this;
+            document.getElementById("p2").innerHTML = x;  //[object Window]
+        </script>
+
+        <h3>3.函数中使用this -- 非严格模式下[object Window]，严格模式下undefined</h3>
+        <p id="p3"></p>
+        <script>
+            "use strict"
+            function func1(){
+                return this;
+            }
+            document.getElementById("p3").innerHTML = func1();
+        </script>
+
+        <h3>4.事件中的this，指向接收事件的HTML元素</h3>
+        <button onclick="this.style.display='none'">click to disappear</button>
+
+        <h3>5.对象方法中绑定this，指向其所对应的对象[object Object]</h3>
+        <p id="p5"></p>
+        <script>
+            var school = {
+                nameIs : "xxx",
+                locate : "beijing",
+                studentNum : 900,
+                all : function(){
+                    return this;  //this指向该函数所属的对象[object Object]
+                } 
+            }
+            document.getElementById("p5").innerHTML = school.all();
+        </script>
+
+        <h3>6.显示函数绑定，使用apply和call，可以将this引用到任何对象</h3>
+        <p id="p6"></p>
+        <script>
+            var firstName = "hua", lastName = "flower";
+            var person1 = {
+                fullName : function(fm, live) {
+                    return this.firstName + " " + this.lastName + " from " + fm + " livein " + live; //call:this指向person2
+                }
+            }
+            var person2 = {
+                firstName : "li",
+                lastName : "jian"
+            }
+            //call可以传入多个参数，apply只能传入两个参数（第二个参数数组形式传入）
+            //var x = person1.fullName();  //undefined undefined this指向对象person1，person1中没有对应值
+            //var x = person1.fullName.call(); //hua flower this指向window
+            //var x = person1.fullName.call(person2); //li jian this指向person2
+            //var x = person1.fullName.apply(person2);
+            //var x = person1.fullName.call(person2, "哈尔滨", "北京"); //call参数之间传进去，逗号分隔即可
+            var x = person1.fullName.apply(person2, ["哈尔滨", "北京"]);  //apply的所有参数都必须放在一个数组里面传进去
+            document.getElementById("p6").innerHTML = x;
+        </script>
+
+        <h3>7.html 中var定义的变量属于window对象</h3>
+        <p id="p7"></p>
+        <script>
+            var num = 100
+            document.getElementById("p7").innerHTML = "the num is " + window.num;
+        </script>
+
+        <h3>8.html 中let定义的变量不属于window对象undefined</h3>
+        <p id="p8"></p>
+        <script>
+            let l = 100
+            document.getElementById("p8").innerHTML = "the num is " + window.l;
+        </script>
+
+        <h3>9.可以更改const定义对象的属性但不能重新赋值</h3>
+        <p id="p9"></p>
+        <script>
+            //const常量可以变更属性值
+            // const home = {province:"henan", city:"luoyang", town:"xinan"};
+            // home.province = "北京";
+            // home.city = "海淀";
+            // home.town = "东冉村";
+            // document.getElementById("p9").innerHTML = "he is from " + home.province + home.city + home.town;
+            try{
+                const home = {province:"henan", city:"luoyang", town:"xinan"};
+                home = {province:"北京", city:"海淀", town:"东冉村"};  //不能整体赋值更改TypeError: Assignment to constant variable.
+            }
+            catch(err){
+                document.getElementById("p9").innerHTML = err;
+            }
+        </script>
+
+        <h3>10.JSON字符串创建对象JSON.parse(text[, reviver])</h3>
+        <p id="p10"></p>
+        <script>
+            var txt = '{ "sites" : [' + 
+            '{ "name":"baidu", "url":"www.baidu.com"},' +
+            '{ "name":"google", "url":"www.google.com"},' + 
+            '{ "name":"taobao", "url":"www.taobao.com"} ]}';
+           obj = JSON.parse(txt);
+           document.getElementById("p10").innerHTML = obj.sites[1].name + " " + obj.sites[1].url;
+        </script>
+
+        <h3>11.JavaScript值转换为JSON字符串JSON.stringify(value[, replacer[, space]])</h3>
+        <script>
+            var a = {"name":"baidu", "site":"www.baidu.com"};
+            a1 = JSON.stringify(a);
+            document.write("只有一个参数：" + "<br />");
+            document.write("<pre>" + a1 +"</pre>" + "<br />"); //pre格式化输出
+            a2 = JSON.stringify(a,  null, 4); //使用四个空格缩进
+            document.write("有多个参数：" + "<br />");
+            document.write("<pre>" + a2 +"</pre>" + "<br />");
+        </script>
+
+        <h3>12.href="#+id"与href="javascript:void(0)"</h3>
+        <a href="#p1">点击返回第一条</a> <br />
+        <a href="javascript:void(0)">点击没有反应</a> <br />
+        <a href="javascript:void(alert('一个报警wranning信息！'))">点击弹出警告</a>
+
+    </body>
+</html>

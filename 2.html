@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+	
+<p>
+JavaScript 能够直接写入 HTML 输出流中：
+</p>
+<script>
+document.write("<h1>document.write标题</h1>");
+document.write("<p>document.write段落。</p>");
+</script>
+
+<h1> js对按键click1做出反应 </h1>
+<button type="button" onclick="alert('欢迎')">click1</button>	
+
+<p id="p1">js改变html元素</p>
+<script>
+    function myfunc1(){
+        x = document.getElementById("p1");
+        x.innerHTML="hello js!";
+    }
+</script>
+<button type="button" onclick="myfunc1()">click2</button>
+
+<p>改变html图片</p>
+<script>
+    function changeImg(){
+        element = document.getElementById("myimg")
+        if (element.src.match("pic1")){
+            element.src = "G:\wordfortest\pic2.jpg";
+        }else{
+            element.src = "G:\wordfortest\pic1.jpg";
+        }
+    }
+</script>
+<img id="myimg" onclick="changeImg()" src="G:\wordfortest\pic1.jpg" width="400" height="700">
+
+<p id="pp">改变html样式</p>
+<script>
+    x = document.getElementById("pp")
+    x.style.color="#ff0000";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<html>
+    <body onload="checkCookie()">
+        <p id="p1">使用object()创建对象 </p>
+        <script>
+            var person = new Object();  //创建对象
+            person.firstName = "cheng";  //向对象中添加属性
+            person.lastName = "mengyuan";
+            person.age = 25;
+            person.sex = "woman";
+            document.getElementById("p1").innerHTML += person.firstName + " " + person.lastName + " is a " + person.sex;
+        </script>
+
+        <p id="p2">使用函数构造对象 </p>
+        <script>
+            //函数构造对象
+            function fruit(name, color, taste){
+                this.name = name;
+                this.color = color;
+                this.taste = taste;
+                //构造器内部函数的定义方法
+                this.changeColor = changeColor;
+                function changeColor(cor){
+                    this.color = cor;
+                }
+            }
+            var f = new fruit("apple", "red", "good");  //创建实例
+            f.changeColor("green");
+            document.getElementById("p2").innerHTML += f.name + " is " + f.color + " and taste " + f.taste;           
+        </script>
+
+        <p id="p3">使用prototype添加属性</p>
+        <script>
+            fruit.prototype.from = "henan";
+            document.getElementById("p3").innerHTML += f.name + " come from " + f.from;
+        </script>
+
+        <p id="p4">使用toString()进行进制转换</p>
+        <script>
+            var num = 128;
+            document.getElementById("p4").innerHTML += num + " 十六进制:" + num.toString(16) + " 八进制：" + num.toString(8) + " 二进制：" + num.toString(2);
+        </script>
+
+        <p id="p5">字符串</p>
+        <script>
+           txt = "...happy study...";
+            document.getElementById("p5").innerHTML += " 大字体：" + txt.big();
+            document.getElementById("p5").innerHTML += " small字体：" + txt.small();
+            document.getElementById("p5").innerHTML += " blink字体：" + txt.blink();
+            document.getElementById("p5").innerHTML += " bold字体：" + txt.bold();
+            document.getElementById("p5").innerHTML += " fontcolor()改颜色：" + txt.fontcolor("blue");
+            document.getElementById("p5").innerHTML += " fontsize()改大小：" + txt.fontsize(18);
+            document.getElementById("p5").innerHTML += " 斜体：" + txt.italics();
+        </script>
+
+        <p id="p6">数组操作</p>
+        <script>
+            var s1 = ["a", "b", "c", "d", "e"];
+            var s2 = [1,21,13,34,25];
+            //var s = "hello";
+            //document.getElementById("p6").innerHTML += Array.from(s);
+            //document.getElementById("p6").innerHTML += "拼接：" + s1.concat(s2);
+            //document.getElementById("p6").innerHTML += "array.copyWithin(target, start, end)指定位置拷贝到另一位置：" + s1.copyWithin(3,1);
+            //document.getElementById("p6").innerHTML += "固定值替换数组的元素fill：" + s1.fill("哦", 3);
+            // function func1(str){
+            //     for(var i=0; i<str.length; i++){
+            //         if (str[i] != "a") return str[i];
+            //     }
+            // }
+            //document.getElementById("p6").innerHTML += "filter符合条件的数组：" + s1.filter(func1);
+            //document.getElementById("p6").innerHTML += "find符合条件的第一个元素：" + s1.find(func1);
+            //document.getElementById("p6").innerHTML += "findIndex符合条件第一个元素索引：" + s1.findIndex(func1);
+            //document.getElementById("p6").innerHTML += "includes是否包含指定值：" + s1.includes("f");
+            //document.getElementById("p6").innerHTML += "join数组元素组成字符串：" + s1.join("|");
+            //document.getElementById("p6").innerHTML += "pop删除并返回数组最后一个元素：" + s1.pop() + " pop后的数组：" + s1;
+            //document.getElementById("p6").innerHTML += "push数组末尾添加元素并返回新的长度：" + s1.push("hello") + " push后的数组：" + s1;
+            //document.getElementById("p6").innerHTML += "reverse反转数组：" + s1.reverse(); 
+            //document.getElementById("p6").innerHTML += "shift删除并返回数组第一个元素：" + s1.shift() + " shift后的数组：" + s1;
+            //document.getElementById("p6").innerHTML += "slice选取数组的一部分并返回新的数组：" + s1.slice(2,4);
+            //document.getElementById("p6").innerHTML += "sort数组元素排序：" + s2.sort();
+            // s1.splice(3, 0, "hello", "world", "china");
+            // document.getElementById("p6").innerHTML += "spice添加数组元素：" + s1;
+            //console.log(s1.splice(3, 0));  //未删除任何元素，返回空数组
+            //console.log(s1.splice(2,2));  //删除两个元素，返回删除元素的数组
+            //document.getElementById("p6").innerHTML += "tostring()数组转换为字符串：" + s1.toString();
+            document.getElementById("p6").innerHTML += "unshift数组头插入元素，并返回插入后的长度：" + s1.unshift("beijing", "shanghai", "guangzhou", "shenzhen") + " unshift后的数组：" + s1;
+        </script>
+
+        <p id="p7">布尔对象</p>
+        <script>
+            //为布尔对象创建新的方法
+            Boolean.prototype.location = function(){
+                if (this.valueOf() == true){
+                    this.loc = "beijing";
+                }else{
+                    this.loc = "shanghai";
+                }
+            }
+            //var a = new Boolean(1);
+            //var a = new Boolean(true);
+            //var a = new Boolean(0);
+            var a = new Boolean(false);
+            a.location();
+            document.getElementById("p7").innerHTML += " location is " + a.loc;
+        </script>
+
+        <p id="p8"></p>
+        <button type="button" onclick="showconfirm()">点击弹出确认框</button>
+        <script>
+            var str1;
+            function showconfirm(){
+                var r = confirm("click it");
+                if (r==true){ 
+                    str1 = "sure,ok"
+                }else{
+                    str1 = "cancel";
+                }
+            }
+            document.getElementById("p8").innerHTML += str1;
+        </script>
+
+        <p id="p9">打印当前时间：</p>
+        <button type="button" onclick="stopTimer()"> stop time interval</button>
+        <script>
+            var mytime = setInterval(function(){mytimer(), 1000});  //间隔指定毫秒数不停的执行
+            function mytimer(){
+                var d = new Date();
+                var t = d.toLocaleTimeString();
+                document.getElementById("p9").innerHTML = t;
+            }
+            function stopTimer(){
+                clearInterval(mytime);
+            }
+        </script>
+
+        <p id="p10">cookie设置获取和检查</p>
+        <script>
+            //cookie名称、cookie值、cookie过期时间
+            function setCookie(cname, cvalue, cexpires){
+                var d = new Date();
+                d.setTime(d.getTime() + (cexpires*60*1000));
+                var exp = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + exp;
+            }
+            function getCookie(cname){
+                var name = cname + "=";
+                var ca = document.cookie.split(";");
+                for(var i=0; i<ca.length; i++){
+                    var c = ca[i].trim();
+                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+                }
+            }
+            function checkCookie(){
+                var username = getCookie("username");
+                if (username != ""){
+                    alert("welcome again " + username);
+                }else{
+                    username = prompt("pls input your name:");
+                    if (username!="" && username!=null){
+                        setCookie("username", username, 2);
+                    }
+                }
+            }
+        </script>
+
+        <p id="p11"></p>
+        <button type="button" onclick="openWin()">点击弹出新窗口</button>
+        <button type="button" onclick="closeWin()">点击关闭新窗口</button>
+        <script>
+            function openWin(){
+                w1 = window.open("https://www.baidu.com");
+                w1.focus();
+                w1.opener.document.getElementById("p11").innerHTML = "新窗口打开了百度";
+            }
+            function closeWin(){
+                w1.close();
+                w1.opener.document.getElementById("p11").innerHTML = "关闭了新打开的百度";
+            }
+        </script>
+    </body>
+</html>

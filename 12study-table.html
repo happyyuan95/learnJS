@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <script>         
+            function changeBorder(t){
+                
+                document.getElementById("tb").border = "10";
+            }
+            function changeCellPadding(t){
+                document.getElementById("tb").cellPadding = "8";
+            }
+            function changeCellSpacing(t){
+                document.getElementById("tb").cellSpacing = "6";
+            }
+            function showAboveFrame(){
+                document.getElementById("tb").frame = "above";
+            }
+            function showBelowFrame(){
+                document.getElementById("tb").frame = "below";
+            }
+            function showRowFrame(){
+                document.getElementById("tb").rules = "rows";
+            }
+            function showColsFrame(){
+                document.getElementById("tb").rules = "cols";
+            }
+            function createTitle(){
+                var x = document.getElementById("tb").createCaption();
+                x.innerHTML = "title";
+            } 
+            function insertARow(){
+                var x = document.getElementById("tb").insertRow(-1);
+                x.insertCell(0).innerHTML = "new1";  //添加单元格
+                x.insertCell(1).innerHTML = "new2";
+            }
+        </script>
+    </head>
+    <body>
+        <table border="1" id="tb">
+            <tr>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+        </table> <br />
+        <button type="button" onclick="changeBorder()">改变边框宽度border</button> <br />
+        <button type="button" onclick="changeCellPadding()">改变单元格边距cellPadding</button> <br />
+        <button type="button" onclick="changeCellSpacing()">改变单元格间距cellSpacing</button> <br />
+        <button type="button" onclick="showAboveFrame()">指定显示上边框above frame</button> <br />
+        <button type="button" onclick="showRowFrame()">只显示行边框rules rows</button> <br />
+        <button type="button" onclick="showColsFrame()">指定显示列边框rules cols</button> <br />
+        <button type="button" onclick="insertARow()">插入1行insertRow</button> <br />
+        //align水平对齐 left right 默认居中
+        //vAlign垂直对齐top bottom  默认居中
+    </body>
+</html>
