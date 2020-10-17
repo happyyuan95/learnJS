@@ -61,10 +61,10 @@ var num = 100;
 function getVar(){
     //num = 50;  //更改全局变量
     //var num = 50;  //定义局部变量，只在函数中有作用
-    console.log("-----in function：", num);
+    //console.log("-----in function：", num);
 }
 getVar();  //50
-console.log("------------out function:", num);  //100
+//console.log("------------out function:", num);  //100
 
 var x = 0;
 {
@@ -97,3 +97,11 @@ var x = 0;
 // }).finally(function () {
 //     console.log("End");
 // });
+
+{
+    let filePath = "G:\\wordfortest\\ddd.txt";
+    let path = filePath.split("\\");
+    let fileName = path[path.length-1];
+    console.log("path:", path);
+    console.log("fileName:", fileName);
+}
